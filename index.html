@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRAI Lectorium - Centro de Recursos para el Aprendizaje</title>
+  
+  <!-- External Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Theme Toggle -->
+  <button id="themeToggle" class="fixed top-4 right-4 z-50 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:scale-105 transition-all">
+    <i id="themeIcon" class="fas fa-moon text-gray-800 dark:text-yellow-300"></i>
+  </button>
+  
+  <!-- Header -->
+  <header class="bg-white/10 backdrop-blur-lg border border-white/20 sticky top-0 z-40 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <div class="bg-gradient-to-br from-purple-600 to-purple-700 p-3 rounded-xl">
+          <i class="fas fa-university text-white text-2xl"></i>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Lectorium CRAI</h1>
+          <p class="text-sm opacity-80">Centro de Recursos - I.E. Luis Carlos López</p>
+        </div>
+      </div>
+      
+      <nav class="flex items-center space-x-6">
+        <button id="quickSearchBtn" class="hover:scale-105 transition-all">
+          <i class="fas fa-search text-xl text-purple-600"></i>
+        </button>
+        <button id="notificationBtn" class="relative hover:scale-105 transition-all">
+          <i class="fas fa-bell text-xl text-purple-600"></i>
+          <span id="notificationCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+        </button>
+        <button id="loginBtn" class="bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-all">
+          <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+        </button>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Navigation Tabs -->
+  <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-1 mb-8 mx-6 overflow-x-auto">
+    <div class="flex space-x-1 min-w-max">
+      <button class="tab-btn px-4 py-3 rounded-lg font-medium hover:scale-105 transition-all tab-active border-b-2 border-purple-600 text-purple-600" data-tab="dashboard">
+        <i class="fas fa-home mr-2"></i>Inicio
+      </button>
+      <button class="tab-btn px-4 py-3 rounded-lg font-medium hover:scale-105 transition-all" data-tab="catalog">
+        <i class="fas fa-books mr-2"></i>Catálogo
+      </button>
+      <button class="tab-btn px-4 py-3 rounded-lg font-medium hover:scale-105 transition-all" data-tab="loans">
+        <i class="fas fa-book-reader mr-2"></i>Préstamos
+      </button>
+      <button class="tab-btn px-4 py-3 rounded-lg font-medium hover:scale-105 transition-all" data-tab="repository">
+        <i class="fas fa-archive mr-2"></i>Repositorio
+      </button>
+      <button class="tab-btn px-4 py-3 rounded-lg font-medium hover:scale-105 transition-all" data-tab="databases">
+        <i class="fas fa-database mr-2"></i>Bases de Datos
+      </button>
+    </div>
+  </div>
+  
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-8">
+    <!-- Dashboard Tab -->
+    <div id="dashboard-tab" class="tab-content">
+      <!-- Welcome Section -->
+      <section class="mb-12">
+        <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl p-8 text-white text-center shadow-2xl">
+          <h2 class="text-4xl font-bold mb-4">Bienvenido al CRAI Lectorium</h2>
+          <p class="text-xl opacity-90 mb-8">Tu Centro de Recursos para el Aprendizaje y la Investigación</p>
+          
+          <!-- Statistics Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-2">5,000+</p>
+              <p class="text-sm opacity-80">Libros</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-2">500+</p>
+              <p class="text-sm opacity-80">Recursos Digitales</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-2">50+</p>
+              <p class="text-sm opacity-80">Bases de Datos</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-2">24/7</p>
+              <p class="text-sm opacity-80">Acceso Digital</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Quick Access Cards -->
+      <section class="mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="quick-access-card bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 hover:shadow-xl transition-all" data-tab="catalog">
+            <div class="bg-blue-100 p-4 rounded-lg mb-4 w-fit">
+              <i class="fas fa-search text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Buscar Recursos</h3>
+            <p class="text-sm opacity-70">Explora nuestro catálogo completo de libros y recursos digitales</p>
+          </div>
+          
+          <div class="quick-access-card bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 hover:shadow-xl transition-all" data-tab="repository">
+            <div class="bg-green-100 p-4 rounded-lg mb-4 w-fit">
+              <i class="fas fa-upload text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Repositorio Digital</h3>
+            <p class="text-sm opacity-70">Accede a trabajos de investigación y proyectos estudiantiles</p>
+          </div>
+          
+          <div class="quick-access-card bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 hover:shadow-xl transition-all" data-tab="databases">
+            <div class="bg-purple-100 p-4 rounded-lg mb-4 w-fit">
+              <i class="fas fa-database text-purple-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Bases de Datos</h3>
+            <p class="text-sm opacity-70">Recursos académicos y bases de datos especializadas</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Features Overview -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-8">Funcionalidades Principales</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
+            <i class="fas fa-search text-4xl text-blue-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Búsqueda Avanzada</h3>
+            <p class="text-sm opacity-70">Sistema OPAC con filtros inteligentes para encontrar exactamente lo que necesitas.</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
+            <i class="fas fa-book-reader text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Gestión de Préstamos</h3>
+            <p class="text-sm opacity-70">Solicita, renueva y gestiona tus préstamos de manera digital y eficiente.</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
+            <i class="fas fa-cloud text-4xl text-purple-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Acceso Digital</h3>
+            <p class="text-sm opacity-70">Recursos disponibles 24/7 desde cualquier dispositivo con conexión a internet.</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
+            <i class="fas fa-users text-4xl text-orange-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Comunidad Estudiantil</h3>
+            <p class="text-sm opacity-70">Comparte y accede a trabajos de investigación de la comunidad educativa.</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
+            <i class="fas fa-graduation-cap text-4xl text-red-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Formación Continua</h3>
+            <p class="text-sm opacity-70">Tutoriales y capacitaciones para aprovechar al máximo los recursos.</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
+            <i class="fas fa-chart-bar text-4xl text-teal-500 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Transparencia</h3>
+            <p class="text-sm opacity-70">Estadísticas y reportes públicos sobre el uso y gestión de recursos.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Other tabs -->
+    <div id="catalog-tab" class="tab-content hidden">
+      <div class="text-center py-20">
+        <i class="fas fa-search text-6xl text-purple-300 mb-6"></i>
+        <h2 class="text-3xl font-bold mb-4">Catálogo de Recursos</h2>
+        <p class="text-lg opacity-70 mb-8">Función en desarrollo - Próximamente podrás buscar en nuestro catálogo completo</p>
+        <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 max-w-md mx-auto">
+          <p class="text-sm">🔍 Búsqueda avanzada de libros</p>
+          <p class="text-sm">📚 Filtros por materia y disponibilidad</p>
+          <p class="text-sm">📖 Vista previa de contenidos</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="loans-tab" class="tab-content hidden">
+      <div class="text-center py-20">
+        <i class="fas fa-book-reader text-6xl text-green-300 mb-6"></i>
+        <h2 class="text-3xl font-bold mb-4">Gestión de Préstamos</h2>
+        <p class="text-lg opacity-70 mb-8">Función en desarrollo - Próximamente podrás gestionar tus préstamos digitalmente</p>
+        <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 max-w-md mx-auto">
+          <p class="text-sm">📋 Solicitud de préstamos online</p>
+          <p class="text-sm">🔄 Renovaciones automáticas</p>
+          <p class="text-sm">📅 Recordatorios de vencimiento</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="repository-tab" class="tab-content hidden">
+      <div class="text-center py-20">
+        <i class="fas fa-archive text-6xl text-orange-300 mb-6"></i>
+        <h2 class="text-3xl font-bold mb-4">Repositorio Digital</h2>
+        <p class="text-lg opacity-70 mb-8">Función en desarrollo - Próximamente podrás acceder al repositorio institucional</p>
+        <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 max-w-md mx-auto">
+          <p class="text-sm">📄 Trabajos de investigación</p>
+          <p class="text-sm">🎓 Proyectos estudiantiles</p>
+          <p class="text-sm">📊 Recursos educativos</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="databases-tab" class="tab-content hidden">
+      <div class="text-center py-20">
+        <i class="fas fa-database text-6xl text-blue-300 mb-6"></i>
+        <h2 class="text-3xl font-bold mb-4">Bases de Datos</h2>
+        <p class="text-lg opacity-70 mb-8">Función en desarrollo - Próximamente tendrás acceso a bases de datos especializadas</p>
+        <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 max-w-md mx-auto">
+          <p class="text-sm">🔬 EBSCO Academic</p>
+          <p class="text-sm">📚 Google Scholar</p>
+          <p class="text-sm">🌐 Recursos abiertos</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Chat Widget -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button id="chatToggle" class="bg-gradient-to-r from-purple-600 to-purple-800 text-white w-14 h-14 rounded-full shadow-lg hover:scale-110 transition-all">
+      <i class="fas fa-comments text-xl"></i>
+    </button>
+  </div>
+  
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-6 right-6 z-50 space-y-2"></div>
+  
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
